@@ -4,4 +4,4 @@
 
 ### Added
 
-- Implemented npm-package
+- Implemented assert-logic

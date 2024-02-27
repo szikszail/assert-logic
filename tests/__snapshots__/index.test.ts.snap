@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is a function that returns a promise that resolves to false 1`] = `[AssertionError: Assertion failed: function(() => Promise.res...) to be true]`;
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is a function that returns false 1`] = `"Assertion failed: function(() => false) to be true"`;
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is a promise that rejects 1`] = `"error"`;
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is a promise that resolves to a promise that resolves to false 1`] = `[AssertionError: Assertion failed: [object Promise] to be true]`;
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is a promise that resolves to false 1`] = `[AssertionError: Assertion failed: [object Promise] to be true]`;
+
+exports[`assert-logic AtomicAssertion evaluate should throw an AssertionError if the value is false 1`] = `"Assertion failed: value(false) to be true"`;
