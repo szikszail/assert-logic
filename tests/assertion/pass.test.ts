@@ -15,7 +15,7 @@ describe("pass", () => {
   describe("toString", () => {
     test("should return pass(value)", () => {
       const value = pass(5);
-      expect(value.toString()).toBe("pass(5)");
+      expect(value.toString()).toBe("5");
     });
   });
 

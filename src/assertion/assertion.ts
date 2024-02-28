@@ -1,3 +1,5 @@
+import {lines} from "lines-builder";
+
 import {AssertionError} from "../error";
 import {AssertionValue, EvaluationResult} from "../types";
 import {PassAssertion} from "./pass";
@@ -13,12 +15,12 @@ export class Assertion {
     // pass
   }
 
-  protected fail(...errors: Error[]): void {
-    throw new AssertionError("Assertion failed", this, ...errors);
+  toString(): string {
+    return "";
   }
 
-  toString(): string {
-    return "true";
+  protected fail(...errors: Error[]): void {
+    throw new AssertionError("Assertion failed", this, ...errors);
   }
 }
 
@@ -61,19 +63,55 @@ export class UnaryAssertion extends Assertion {
 }
 
 export class VariadicAssertion extends Assertion {
-  protected readonly values: Assertion[];
+  protected readonly values: Assertion[] = [];
 
   constructor(private readonly name: string, ...values: (AssertionValue | Assertion)[]) {
+    if (values.length < 2) {
+      throw new Error(`At least two values are required for ${name}`);
+    }
     super();
-    this.values = values.map((value) => {
+    this.append(...values);
+  }
+
+  append(...values: (AssertionValue | Assertion)[]): void {
+    this.values.push(...values.map((value) => {
       if (value instanceof Assertion) {
         return value;
       }
       return new PassAssertion(value);
+    }));
+  }
+
+  evaluate(): void | Promise<void> {
+    const results = this.values.map((value) => {
+      try {
+        return value.evaluate();
+      } catch (e) {
+        return e;
+      }
     });
+    if (results.some((result) => result instanceof Promise)) {
+      return Promise.allSettled(results).then((settledResults) => {
+        this.onEvaluation(...settledResults.map((settledResult) => {
+          if (settledResult.status === "fulfilled") {
+            return true;
+          }
+          return settledResult.reason;
+        }));
+      });
+    }
+    this.onEvaluation(...results);
   }
 
   toString(): string {
-    return `${this.name}(\n\t${this.values.map((value) => value.toString()).join(",\n\t")}\n)`;
+    return lines(
+      {skipFirstLevelIndent: true, indent: 2},
+      this.name + "(",
+      lines(
+        {trimLeft: false},
+        this.values.map((value) => value.toString()).join(",\n")
+      ),
+      ")"
+    ).toString();
   }
 }

@@ -1,6 +1,6 @@
 import {Assertion} from "./assertion";
 import type {AssertionValue} from "../types";
-import {toString} from "../formatter";
+import {valueToString} from "../formatter";
 
 export class PassAssertion extends Assertion {
   constructor(private value: AssertionValue) {
@@ -34,6 +34,6 @@ export class PassAssertion extends Assertion {
   }
 
   toString(): string {
-    return `pass(${toString(this.value)})`;
+    return valueToString(this.value);
   }
 }

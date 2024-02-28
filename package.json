@@ -50,7 +50,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "debug": "^4.3.4"
+    "debug": "^4.3.4",
+    "lines-builder": "^1.5.1"
   },
   "jest": {
     "reporters": [

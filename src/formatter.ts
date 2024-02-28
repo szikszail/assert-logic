@@ -1,6 +1,6 @@
 import type {AssertionValue} from "./types";
 
-export function toString(value: AssertionValue): string {
+export function valueToString(value: AssertionValue): string {
   if (value instanceof Function) {
     let name = value?.name;
     if (!name) {
