@@ -1,17 +1,14 @@
 import {or} from '../../src';
-import {OrAssertion} from '../../src/assertion/or';
+import {ORAssertion} from '../../src/assertion/or';
 
 describe("or", () => {
-  test.each([
-    [[]],
-    [[true]],
-  ])("should throw for %p", (values) => {
-    expect(() => or(...values)).toThrow();
+  test("should throw for missing value", () => {
+    expect(() => or()).toThrow();
   });
 
   test("should return OrAssertion", () => {
     const value = or(true, false);
-    expect(value).toBeInstanceOf(OrAssertion);
+    expect(value).toBeInstanceOf(ORAssertion);
   });
 
   test.each([
@@ -64,9 +61,9 @@ describe("or", () => {
 
   // or with false values, then append, then evaluate
   test("should not throw for append", () => {
-    const assertion = or(false, false);
+    const assertion = or(false);
     assertion.append(true)
     expect(() => assertion.evaluate()).not.toThrow();
-    expect(assertion.toString()).toBe("or(\n  false,\n  false,\n  true\n)");
+    expect(assertion.toString()).toBe("or(\n  false,\n  true\n)");
   });
 });

@@ -1,10 +1,10 @@
 import {pass} from "../../src";
-import {PassAssertion} from "../../src/assertion/pass";
+import {PASSAssertion} from "../../src/assertion/pass";
 
 describe("pass", () => {
   test("should return PassAssertion", () => {
     const value = pass(5);
-    expect(value).toBeInstanceOf(PassAssertion);
+    expect(value).toBeInstanceOf(PASSAssertion);
   });
 
   test("should return the same PassAssertion", () => {

@@ -1,7 +1,7 @@
 import {Assertion, VariadicAssertion} from "./assertion";
 import type {AssertionValue, EvaluationResult} from "../types";
 
-export class OrAssertion extends VariadicAssertion {
+export class ORAssertion extends VariadicAssertion {
   constructor(...values: (AssertionValue | Assertion)[]) {
     super('or', ...values);
   }

@@ -2,11 +2,11 @@ import {Assertion} from "./assertion";
 import type {AssertionValue} from "../types";
 import {valueToString} from "../formatter";
 
-export class PassAssertion extends Assertion {
+export class PASSAssertion extends Assertion {
   constructor(private value: AssertionValue) {
     super();
     if (value instanceof Assertion) {
-      return value as PassAssertion;
+      return value as PASSAssertion;
     }
   }
 

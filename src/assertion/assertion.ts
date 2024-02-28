@@ -2,7 +2,7 @@ import {lines} from "lines-builder";
 
 import {AssertionError} from "../error";
 import {AssertionValue, EvaluationResult} from "../types";
-import {PassAssertion} from "./pass";
+import {PASSAssertion} from "./pass";
 
 export class Assertion {
   evaluate(): void | Promise<void> {
@@ -32,7 +32,7 @@ export class UnaryAssertion extends Assertion {
     if (value instanceof Assertion) {
       this.value = value;
     } else {
-      this.value = new PassAssertion(value);
+      this.value = new PASSAssertion(value);
     }
   }
 
@@ -66,7 +66,7 @@ export class VariadicAssertion extends Assertion {
   protected readonly values: Assertion[] = [];
 
   constructor(private readonly name: string, ...values: (AssertionValue | Assertion)[]) {
-    if (values.length < 2) {
+    if (values.length < 1) {
       throw new Error(`At least two values are required for ${name}`);
     }
     super();
@@ -78,7 +78,7 @@ export class VariadicAssertion extends Assertion {
       if (value instanceof Assertion) {
         return value;
       }
-      return new PassAssertion(value);
+      return new PASSAssertion(value);
     }));
   }
 

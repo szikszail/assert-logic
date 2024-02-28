@@ -1,10 +1,10 @@
 import {not} from "../../src";
-import {NotAssertion} from "../../src/assertion/not";
+import {NOTAssertion} from "../../src/assertion/not";
 
 describe("not", () => {
   test("should return NotAssertion", () => {
     const value = not(5);
-    expect(value).toBeInstanceOf(NotAssertion);
+    expect(value).toBeInstanceOf(NOTAssertion);
   });
 
   test.each([
