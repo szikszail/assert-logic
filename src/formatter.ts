@@ -4,7 +4,7 @@ export function toString(value: AssertionValue): string {
   if (value instanceof Function) {
     let name = value?.name;
     if (!name) {
-      name = value.toString();
+      return 'function';
     }
     if (name.length > 20) {
       name = name.slice(0, 17) + "...";
@@ -12,7 +12,7 @@ export function toString(value: AssertionValue): string {
     return `function(${name})`;
   }
   if (value instanceof Promise) {
-    return value.toString();
+    return 'promise';
   }
-  return `value(${value})`;
+  return String(value);
 }
