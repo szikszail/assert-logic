@@ -63,6 +63,20 @@ function. All accept any number of sync/async functions, Promises, or values as 
 | nor       | Passes if all of its arguments fail                     |
 | xnor      | Passes if all of its arguments pass or all of them fail |
 
+#### Append
+
+The `append` function can be used to append additional logic to an existing variadic logic (all except `pass`).
+
+```javascript
+const {and} = require('assert-logic');
+
+const logic = and(
+    () => true,
+    () => false,
+);
+logic.append(() => true).evaluate(); // will throw an error
+```
+
 ### Evaluation
 
 The `evaluate` function will evaluate the logic and throw an error if it fails.
