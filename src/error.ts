@@ -36,7 +36,15 @@ export class AssertionError extends Error {
   ) {
     super(stringify(
       getErrorRepresentation(operator, expectation, assertion, results),
-      {indent: 2}
+      {
+        indent: 2,
+        // defaultStringType: "PLAIN",
+        // defaultKeyType: "PLAIN",
+        collectionStyle: 'block',
+        // lineWidth: 0,
+        // blockQuote: true,
+        doubleQuotedMinMultiLineLength: Infinity,
+      }
     ));
     this.name = "AssertionError";
   }
