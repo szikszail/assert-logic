@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`node:assert should work with Node:Assert assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Pass
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;

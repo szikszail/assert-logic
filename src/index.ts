@@ -12,6 +12,16 @@ import {NORAssertion} from "./assertion/nor";
 import {NANDAssertion} from "./assertion/nand";
 import {XNORAssertion} from "./assertion/xnor";
 
+import {setDefaultOptions} from "lines-builder";
+
+setDefaultOptions({
+  // Need to force EOL to be Unix style, because Windows style is not supported by YAML
+  eol: "\n",
+  trimLeft: false,
+  skipFirstLevelIndent: true,
+  indent: 2
+});
+
 export const pass = (value: AssertionValue) => new PASSAssertion(value);
 export const not = (value: AssertionValue) => new NOTAssertion(value);
 export const or = (...values: AssertionValue[]) => new ORAssertion(...values);

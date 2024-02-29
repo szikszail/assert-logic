@@ -1,5 +1,6 @@
-import {Assertion, VariadicAssertion} from "./assertion";
+import {Assertion} from "./assertion";
 import type {AssertionValue, EvaluationResult} from "../types";
+import {VariadicAssertion} from "./variadic";
 
 export class NORAssertion extends VariadicAssertion {
   constructor(...values: (AssertionValue | Assertion)[]) {

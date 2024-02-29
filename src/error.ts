@@ -16,8 +16,8 @@ function getErrorRepresentation(operator: string, expectation: string, assertion
       }
       if (result instanceof Error) {
         return {
-          Message: result.message,
-          // Stack: error.stack,
+          // eslint-disable-next-line no-control-regex
+          Error: result.message.replace(/\u001b\[\d+m/g, ''),
         };
       }
       return "Pass";

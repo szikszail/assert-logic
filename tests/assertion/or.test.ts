@@ -51,7 +51,7 @@ describe("or", () => {
 
   test("should return string for nested or", () => {
     const assertion = or(true, or(false, or(true, false)));
-    expect(assertion.toString()).toBe("OR(\n  (boolean true)\n  OR(\n    (boolean false)\n    OR(\n      (boolean true)\n      (boolean false)\n    )\n  )\n)");
+    expect(assertion.toString()).toEqual("OR(\n  (boolean true)\n  OR(\n    (boolean false)\n    OR(\n      (boolean true)\n      (boolean false)\n    )\n  )\n)");
   });
 
   test("should throw for nested or", () => {
@@ -59,11 +59,10 @@ describe("or", () => {
     expect(() => assertion.evaluate()).toThrow();
   });
 
-  // or with false values, then append, then evaluate
   test("should not throw for append", () => {
     const assertion = or(false);
     assertion.append(true)
     expect(() => assertion.evaluate()).not.toThrow();
-    expect(assertion.toString()).toBe("OR(\n  (boolean false)\n  (boolean true)\n)");
+    expect(assertion.toString()).toEqual("OR(\n  (boolean false)\n  (boolean true)\n)");
   });
 });

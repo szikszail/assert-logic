@@ -34,12 +34,14 @@
   },
   "homepage": "https://github.com/szikszail/assert-logic#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.21",
     "@types/debug": "^4.1.12",
     "@types/jest": "^29.5.12",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
+    "chai": "^4.3.4",
     "copyfiles": "^2.4.1",
     "dotenv-ng": "^1.3.0",
     "eslint": "^8.57.0",
@@ -72,7 +74,7 @@
       "dist"
     ],
     "setupFilesAfterEnv": [
-      "./tests/areStringsMatch.ts"
+      "./tests/setup/areStringsMatch.ts"
     ],
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [

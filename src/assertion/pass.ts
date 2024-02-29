@@ -34,7 +34,7 @@ export class PASSAssertion extends Assertion {
       try {
         result = result();
       } catch (e) {
-        this.fail(e);
+        this.fail([e]);
       }
     }
     if (result instanceof Promise) {

@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`chai assert should work with Chai/assert assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
+
+exports[`chai assert should work with Jest assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
+
+exports[`chai expect should work with Chai/expect assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
+
+exports[`chai expect should work with Jest assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
+
+exports[`chai should should work with Chai/should assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
+
+exports[`chai should should work with Jest assertions (negative) 1`] = `
+"AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - Pass
+  - AssertionError (PASS): Expected expression to pass.
+    Results:
+      - Error: expected +0 to equal 1
+    Expression: (function)
+  - Pass
+Expression: |-
+  AND(
+    (function)
+    (function)
+    OR(
+      (function)
+      (function)
+    )
+  )
+"
+`;
