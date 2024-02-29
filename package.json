@@ -1,6 +1,6 @@
 {
   "name": "assert-logic",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This repository/project is a template/placeholder for new NPM packages.",
   "main": "index.js",
   "types": "index.d.ts",

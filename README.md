@@ -82,15 +82,17 @@ and(
 ).evaluate()
 ```
 
+The error message will look like this:
+
 ```
-AssertionError: AssertionError (AND): Expected all expression to pass, but not all did.
+AssertionError (AND): Expected all expression to pass, but not all did.
 Results:
   - AssertionError (XOR): Expected odd number of expressions to pass, but even number did.
     Results:
       - Pass
       - AssertionError (PASS): Expected expression to pass.
         Results:
-          - Message: 'Failed expression: (boolean false)'
+          - Error: "Failed expression: (boolean false)"
         Expression: (boolean false)
       - Pass
     Expression: |-
