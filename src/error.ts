@@ -1,5 +1,5 @@
 import {Assertion} from "./assertion/assertion";
-import {dump} from "js-yaml";
+import {stringify} from "yaml";
 import {AnyValue, EvaluationResult} from "./types";
 import {valueToString} from "./assertion/pass";
 
@@ -34,7 +34,10 @@ export class AssertionError extends Error {
     public readonly assertion: Assertion,
     public readonly results?: EvaluationResult[],
   ) {
-    super(dump(getErrorRepresentation(operator, expectation, assertion, results), {sortKeys: false}));
+    super(stringify(
+      getErrorRepresentation(operator, expectation, assertion, results),
+      {indent: 2}
+    ));
     this.name = "AssertionError";
   }
 }
