@@ -94,7 +94,7 @@ describe("and", () => {
   // return string for nested and
   test("should return string for nested and", () => {
     const assertion = and(true, and(true, and(true, true)));
-    expect(assertion.toString()).toBe("and(\n  true,\n  and(\n    true,\n    and(\n      true,\n      true\n    )\n  )\n)");
+    expect(assertion.toString()).toBe("AND(\n  (boolean true)\n  AND(\n    (boolean true)\n    AND(\n      (boolean true)\n      (boolean true)\n    )\n  )\n)");
   });
 
   // and with false values, then append, then evaluate

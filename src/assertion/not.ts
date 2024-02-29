@@ -3,12 +3,12 @@ import {AssertionValue, EvaluationResult} from "../types";
 
 export class NOTAssertion extends UnaryAssertion {
   constructor(value: AssertionValue | Assertion) {
-    super('not', value);
+    super("NOT", "Expected the expression to fail, but it passed.", value);
   }
 
-  onEvaluation(result: EvaluationResult): void | Promise<void> {
-    if (result === true) {
-      this.fail();
+  onEvaluation(results: EvaluationResult[]): void | Promise<void> {
+    if (results[0] === true) {
+      this.fail(results);
     }
   }
 }

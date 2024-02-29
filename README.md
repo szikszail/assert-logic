@@ -72,6 +72,45 @@ will call it automatically.
 
 The evaluate function will return a Promise if any of the arguments are async.
 
+### AssertionError
+
+Given the following expression what is expected to fail:
+```javascript
+and(
+    xor(true, false, true),
+    true,
+).evaluate()
+```
+
+```
+AssertionError: AssertionError (AND): Expected all expression to pass, but not all did.
+Results:
+  - AssertionError (XOR): Expected odd number of expressions to pass, but even number did.
+    Results:
+      - Pass
+      - AssertionError (PASS): Expected expression to pass.
+        Results:
+          - Message: 'Failed expression: (boolean false)'
+        Expression: (boolean false)
+      - Pass
+    Expression: |-
+      XOR(
+        (boolean true)
+        (boolean false)
+        (boolean true)
+      )
+  - Pass
+Expression: |-
+  AND(
+    XOR(
+      (boolean true)
+      (boolean false)
+      (boolean true)
+    )
+    (boolean true)
+  )
+```
+
 ## How NOT to use it
 
 ### As a replacement for assertions

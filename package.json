@@ -36,6 +36,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.12",
     "@types/jest": "^29.5.12",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
@@ -51,7 +52,8 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "lines-builder": "^1.5.1"
+    "lines-builder": "^1.5.1",
+    "js-yaml": "^4.1.0"
   },
   "jest": {
     "reporters": [
@@ -68,6 +70,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "dist"
+    ],
+    "setupFilesAfterEnv": [
+      "./tests/areStringsMatch.ts"
     ],
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [

@@ -5,30 +5,33 @@ import {AssertionValue, EvaluationResult} from "../types";
 import {PASSAssertion} from "./pass";
 
 export class Assertion {
+  constructor(
+    protected readonly operator: string,
+    protected readonly expectation: string
+  ) {
+  }
+
   evaluate(): void | Promise<void> {
     // pass
   }
 
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onEvaluation(...results: EvaluationResult[]): void | Promise<void> {
+  onEvaluation(results: EvaluationResult[]): void | Promise<void> {
     // pass
   }
 
-  toString(): string {
-    return "";
-  }
-
-  protected fail(...errors: Error[]): void {
-    throw new AssertionError("Assertion failed", this, ...errors);
+  protected fail(results: EvaluationResult[]): void {
+    throw new AssertionError(this.operator, this.expectation, this, results);
   }
 }
 
 export class UnaryAssertion extends Assertion {
   protected readonly value: Assertion;
 
-  constructor(private readonly name: string, value: AssertionValue | Assertion) {
-    super();
+  constructor(operator: string, expectation: string, value: AssertionValue | Assertion) {
+    super(operator, expectation);
+
     if (value instanceof Assertion) {
       this.value = value;
     } else {
@@ -37,7 +40,7 @@ export class UnaryAssertion extends Assertion {
   }
 
   toString(): string {
-    return `${this.name}(${this.value.toString()})`;
+    return `${this.operator}(${this.value.toString()})`;
   }
 
   evaluate(): void | Promise<void> {
@@ -52,12 +55,12 @@ export class UnaryAssertion extends Assertion {
     if (!handled) {
       if (result instanceof Promise) {
         return result.then(() => {
-          this.onEvaluation(true);
+          this.onEvaluation([true]);
         }, (e) => {
-          this.onEvaluation(e);
+          this.onEvaluation([e]);
         });
       }
-      this.onEvaluation(true);
+      this.onEvaluation([true]);
     }
   }
 }
@@ -65,11 +68,11 @@ export class UnaryAssertion extends Assertion {
 export class VariadicAssertion extends Assertion {
   protected readonly values: Assertion[] = [];
 
-  constructor(private readonly name: string, ...values: (AssertionValue | Assertion)[]) {
+  constructor(operator: string, expectation: string , ...values: (AssertionValue | Assertion)[]) {
     if (values.length < 1) {
-      throw new Error(`At least two values are required for ${name}`);
+      throw new Error(`At least one value is required for ${operator} assertion.`);
     }
-    super();
+    super(operator, expectation);
     this.append(...values);
   }
 
@@ -92,7 +95,7 @@ export class VariadicAssertion extends Assertion {
     });
     if (results.some((result) => result instanceof Promise)) {
       return Promise.allSettled(results).then((settledResults) => {
-        this.onEvaluation(...settledResults.map((settledResult) => {
+        this.onEvaluation(settledResults.map((settledResult) => {
           if (settledResult.status === "fulfilled") {
             return true;
           }
@@ -100,16 +103,16 @@ export class VariadicAssertion extends Assertion {
         }));
       });
     }
-    this.onEvaluation(...results);
+    this.onEvaluation(results);
   }
 
   toString(): string {
     return lines(
       {skipFirstLevelIndent: true, indent: 2},
-      this.name + "(",
+      this.operator + "(",
       lines(
         {trimLeft: false},
-        this.values.map((value) => value.toString()).join(",\n")
+        ...this.values.map((value) => value.toString())
       ),
       ")"
     ).toString();

@@ -3,14 +3,14 @@ import type {AssertionValue, EvaluationResult} from "../types";
 
 export class XORAssertion extends VariadicAssertion {
   constructor(...values: (AssertionValue | Assertion)[]) {
-    super('xor', ...values);
+    super("XOR", "Expected odd number of expressions to pass, but even number did.", ...values);
   }
 
-  onEvaluation(...results: EvaluationResult[]): void | Promise<void> {
+  onEvaluation(results: EvaluationResult[]): void | Promise<void> {
     const failed = results.filter((result) => result instanceof Error);
     const nPassed = results.length - failed.length;
     if (nPassed % 2 === 0) {
-      this.fail(...(failed as Error[]));
+      this.fail(results);
     }
   }
 }

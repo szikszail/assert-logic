@@ -3,13 +3,13 @@ import type {AssertionValue, EvaluationResult} from "../types";
 
 export class ORAssertion extends VariadicAssertion {
   constructor(...values: (AssertionValue | Assertion)[]) {
-    super('or', ...values);
+    super("OR", "Expected any expression to pass, but non did.", ...values);
   }
 
-  onEvaluation(...results: EvaluationResult[]): void | Promise<void> {
+  onEvaluation(results: EvaluationResult[]): void | Promise<void> {
     const failed = results.filter((result) => result instanceof Error);
     if (failed.length === results.length) {
-      this.fail(...(failed as Error[]));
+      this.fail(results);
     }
   }
 }

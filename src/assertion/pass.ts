@@ -1,10 +1,28 @@
 import {Assertion} from "./assertion";
 import type {AssertionValue} from "../types";
-import {valueToString} from "../formatter";
+import {FailedAssertionError} from "../error";
+
+export function valueToString(value: AssertionValue): string {
+  if (value instanceof Function) {
+    let name = value?.name;
+    if (!name) {
+      return '(function)';
+    }
+    if (name.length > 20) {
+      name = name.slice(0, 17) + "...";
+    }
+    return `(function ${name})`;
+  }
+  if (value instanceof Promise) {
+    return '(promise)';
+  }
+  return `(${typeof value} ${String(value)})`
+}
 
 export class PASSAssertion extends Assertion {
   constructor(private value: AssertionValue) {
-    super();
+    super("PASS", "Expected expression to pass.");
+
     if (value instanceof Assertion) {
       return value as PASSAssertion;
     }
@@ -22,14 +40,14 @@ export class PASSAssertion extends Assertion {
     if (result instanceof Promise) {
       return result.then((value) => {
         if (value !== undefined && !value) {
-          this.fail();
+          this.fail([new FailedAssertionError(value)]);
         }
       }, (error) => {
-        this.fail(error);
+        this.fail([error]);
       });
     }
     if (result !== undefined && !result) {
-      this.fail();
+      this.fail([new FailedAssertionError(result)]);
     }
   }
 
