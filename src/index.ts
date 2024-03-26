@@ -2,7 +2,7 @@
 
 // const log = debug("assert-logic");
 
-import type {AssertionValue} from "./types";
+import type {AssertionValue, AssertionGeneratorFunction} from "./types";
 import {PASSAssertion} from "./assertion/pass";
 import {NOTAssertion} from "./assertion/not";
 import {ORAssertion} from "./assertion/or";
@@ -11,6 +11,8 @@ import {XORAssertion} from "./assertion/xor";
 import {NORAssertion} from "./assertion/nor";
 import {NANDAssertion} from "./assertion/nand";
 import {XNORAssertion} from "./assertion/xnor";
+import {EVERYAssertion} from "./assertion/every";
+import {SOMEAssertion} from "./assertion/some";
 
 import {setDefaultOptions} from "lines-builder";
 
@@ -30,3 +32,5 @@ export const nor = (...values: AssertionValue[]) => new NORAssertion(...values);
 export const nand = (...values: AssertionValue[]) => new NANDAssertion(...values);
 export const xor = (...values: AssertionValue[]) => new XORAssertion(...values);
 export const xnor = (...values: AssertionValue[]) => new XNORAssertion(...values);
+export const every = <T>(items: T[], fn: AssertionGeneratorFunction<T>) => new EVERYAssertion(items, fn);
+export const some = <T>(items: T[], fn: AssertionGeneratorFunction<T>) => new SOMEAssertion(items, fn);
