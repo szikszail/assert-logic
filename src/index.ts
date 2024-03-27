@@ -32,5 +32,5 @@ export const nor = (...values: AssertionValue[]) => new NORAssertion(...values);
 export const nand = (...values: AssertionValue[]) => new NANDAssertion(...values);
 export const xor = (...values: AssertionValue[]) => new XORAssertion(...values);
 export const xnor = (...values: AssertionValue[]) => new XNORAssertion(...values);
-export const every = <T>(items: T[], fn: AssertionGeneratorFunction<T>) => new EVERYAssertion(items, fn);
-export const some = <T>(items: T[], fn: AssertionGeneratorFunction<T>) => new SOMEAssertion(items, fn);
+export const every = <T>(items: T[], fn?: AssertionGeneratorFunction<T>) => new EVERYAssertion(items, fn);
+export const some = <T>(items: T[], fn?: AssertionGeneratorFunction<T>) => new SOMEAssertion(items, fn);
