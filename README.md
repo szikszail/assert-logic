@@ -50,8 +50,10 @@ In all other cases, the value is considered passed.
 
 ### Operations
 
-The API contains the following functions: `and`, `or`, `not`, `xor`, `nand`, `nor`, `xnor`, and also the `evaluate`
-function. All accept any number of sync/async functions, Promises, or values as arguments.
+The API contains the following functions: `and`, `or`, `not`, `xor`, `nand`, `nor`, `xnor`, `every`, `some`, and also the `evaluate`
+function. 
+
+The following ones accept any number of sync/async functions, Promises, or values as arguments.
 
 | Operation | Description                                             |
 |-----------|---------------------------------------------------------|
@@ -62,6 +64,23 @@ function. All accept any number of sync/async functions, Promises, or values as 
 | nand      | Passes if any of its arguments fails                    |
 | nor       | Passes if all of its arguments fail                     |
 | xnor      | Passes if all of its arguments pass or all of them fail |
+
+The `every` and `some` functions are used to evaluate an array of values. The values must be the first parameter, but both functions accept a second parameter that is a function that will be called with each value. If the function is not passed as the second parameter, the value will be interpreted as boolean values.
+ 
+The `every` function is a shorthand for `and` with the values as arguments, while the `some` function is a shorthand for `or` with the values as arguments.
+
+```javascript
+const {every, some} = require('assert-logic');
+const {expect} = require('expect');
+
+const items = [{id: 1, name: 'Item 1', price: 10}, {id: 2, name: 'Item 2', price: -20}, /* ... */];
+every(items, item => {
+    expect(item.id, "Item should have ID as positive number").toBeGreaterThan(0);
+}).evaluate(); // will not throw
+some(items, item => {
+    expect(item.price, "Item should have a positive price").toBeGreaterThan(0);
+}).evaluate(); // will throw
+```
 
 #### Append
 
