@@ -5,7 +5,7 @@ jobs:
   call_npm_package_build:
     permissions:
       contents: read
-      checks: write
+      # checks: write
       pull-requests: write
       # actions: read
       statuses: write
