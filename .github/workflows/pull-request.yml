@@ -5,8 +5,6 @@ jobs:
   call_npm_package_build:
     permissions:
       contents: read
-      # checks: write
-      pull-requests: write
-      # actions: read
+      # pull-requests: write
       statuses: write
     uses: szikszail/workflows/.github/workflows/npm-package-build.yml@v1
