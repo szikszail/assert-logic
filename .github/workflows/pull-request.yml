@@ -7,6 +7,6 @@ jobs:
       contents: read
       checks: write
       pull-requests: write
-      actions: read
-      statuses: write
+      # actions: read
+      # statuses: write
     uses: szikszail/workflows/.github/workflows/npm-package-build.yml@v1
