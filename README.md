@@ -2,8 +2,7 @@
 
 ![Downloads](https://img.shields.io/npm/dw/assert-logic?style=flat-square) ![Version@npm](https://img.shields.io/npm/v/assert-logic?label=version%40npm&style=flat-square) ![Version@git](https://img.shields.io/github/package-json/v/szikszail/assert-logic/main?label=version%40git&style=flat-square) ![CI](https://img.shields.io/github/actions/workflow/status/szikszail/assert-logic/ci.yml?branch=main&label=ci&style=flat-square) ![Docs](https://img.shields.io/github/actions/workflow/status/szikszail/assert-logic/docs.yml?branch=main&label=docs&style=flat-square)
 
-This handy tool can be used to implement additional logic into your assertions, either using Chai, Jest, Assert, or
-plain JavaScript.
+This handy tool can be used to implement additional logic into your assertions, either using Chai, Jest, Assert, or plain JavaScript.
 
 ## Usage
 
