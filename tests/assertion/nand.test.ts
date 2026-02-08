@@ -1,5 +1,5 @@
-import {nand} from "../../src";
-import {NANDAssertion} from "../../src/assertion/nand";
+import { nand } from "../../src";
+import { NANDAssertion } from "../../src/assertion/nand";
 
 // NAND
 const positiveNAND = [
@@ -9,7 +9,7 @@ const positiveNAND = [
   [false, true, true],
   [true, false, false],
   [true, false, true],
-  [true, true, false]
+  [true, true, false],
 ];
 const negativeNAND = [[true, true, true]];
 

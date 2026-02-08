@@ -1,10 +1,10 @@
-import {xnor} from "../../src";
-import {XNORAssertion} from "../../src/assertion/xnor";
+import { xnor } from "../../src";
+import { XNORAssertion } from "../../src/assertion/xnor";
 
 // XNOR
 const positiveXNOR = [
   [false, false, false],
-  [true, true, true]
+  [true, true, true],
 ];
 const negativeXNOR = [
   [false, false, true],

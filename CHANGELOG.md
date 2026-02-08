@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+### Changed
+
+Updated dependencies
+
 ## 1.1.0 - 2024-03-27
 
 ### Added

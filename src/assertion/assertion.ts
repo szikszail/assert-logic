@@ -1,18 +1,17 @@
-import {AssertionError} from "../error";
-import {EvaluationResult} from "../types";
+import { AssertionError } from "../error";
+import { EvaluationResult } from "../types";
 
 export class Assertion {
   constructor(
     protected readonly operator: string,
-    protected readonly expectation: string
-  ) {
-  }
+    protected readonly expectation: string,
+  ) {}
 
   evaluate(): void | Promise<void> {
     // pass
   }
 
-  // @ts-ignore
+  // @ts-expect-error Unused argument, intentionally
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onEvaluation(results: EvaluationResult[]): void | Promise<void> {
     // pass

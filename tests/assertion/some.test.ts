@@ -1,10 +1,10 @@
-import {some} from '../../src';
-import {SOMEAssertion} from "../../src/assertion/some";
-import {ORAssertion} from "../../src/assertion/or";
+import { some } from "../../src";
+import { SOMEAssertion } from "../../src/assertion/some";
+import { ORAssertion } from "../../src/assertion/or";
 
 describe("some", () => {
   test("should throw for missing value", () => {
-    // @ts-ignore
+    // @ts-expect-error Invalid arguments
     expect(() => some()).toThrow();
   });
 
@@ -23,7 +23,10 @@ describe("some", () => {
   });
 
   test("should use custom function", () => {
-    const values = [{a: true, b: false}, {a: false, b: false}];
+    const values = [
+      { a: true, b: false },
+      { a: false, b: false },
+    ];
     expect(() => some(values, (value) => value.a).evaluate()).not.toThrow();
     expect(() => some(values, (value) => value.b).evaluate()).toThrow();
   });

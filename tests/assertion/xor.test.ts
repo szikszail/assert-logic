@@ -1,18 +1,18 @@
-import {xor} from "../../src";
-import {XORAssertion} from "../../src/assertion/xor";
+import { xor } from "../../src";
+import { XORAssertion } from "../../src/assertion/xor";
 
 // XOR
 const positiveXOR = [
   [false, false, true],
   [false, true, false],
   [true, false, false],
-  [true, true, true]
+  [true, true, true],
 ];
 const negativeXOR = [
   [false, false, false],
   [false, true, true],
   [true, false, true],
-  [true, true, false]
+  [true, true, false],
 ];
 
 describe("xor", () => {

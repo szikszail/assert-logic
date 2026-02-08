@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`chai assert should work with Chai/assert assertions (negative) 1`] = `
 "AssertionError (AND): Expected all expression to pass, but not all did.

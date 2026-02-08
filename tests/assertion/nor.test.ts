@@ -1,5 +1,5 @@
-import {nor} from "../../src";
-import {NORAssertion} from "../../src/assertion/nor";
+import { nor } from "../../src";
+import { NORAssertion } from "../../src/assertion/nor";
 
 // NOR
 const positiveNOR = [[false, false, false]];
@@ -10,7 +10,7 @@ const negativeNOR = [
   [true, false, false],
   [true, false, true],
   [true, true, false],
-  [true, true, true]
+  [true, true, true],
 ];
 
 describe("nor", () => {

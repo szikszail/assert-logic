@@ -1,5 +1,5 @@
-import {pass} from "../../src";
-import {PASSAssertion, valueToString} from "../../src/assertion/pass";
+import { pass } from "../../src";
+import { PASSAssertion, valueToString } from "../../src/assertion/pass";
 
 describe("pass", () => {
   test("should return PassAssertion", () => {
@@ -20,23 +20,16 @@ describe("pass", () => {
   });
 
   describe("evaluate", () => {
-    test.each([
-      [true],
-      [1],
-      ["string"],
-      [Symbol()],
-    ])("should not throw for %p", (value) => {
-      const assertion = pass(value);
-      expect(() => assertion.evaluate()).not.toThrow();
-      expect(assertion.evaluate()).toBeUndefined();
-    });
+    test.each([[true], [1], ["string"], [Symbol()]])(
+      "should not throw for %p",
+      (value) => {
+        const assertion = pass(value);
+        expect(() => assertion.evaluate()).not.toThrow();
+        expect(assertion.evaluate()).toBeUndefined();
+      },
+    );
 
-    test.each([
-      [false],
-      [0],
-      [""],
-      [null],
-    ])("should throw for %p", (value) => {
+    test.each([[false], [0], [""], [null]])("should throw for %p", (value) => {
       const assertion = pass(value);
       expect(() => assertion.evaluate()).toThrow();
     });
@@ -52,84 +45,72 @@ describe("pass", () => {
       await expect(assertion.evaluate()).rejects.toThrow();
     });
 
-    test.each([
-      [true],
-      [1],
-      ["string"],
-      [Symbol()],
-    ])("should not throw for resolved promise to %p", async (value) => {
-      const assertion = pass(Promise.resolve(value));
-      await expect(assertion.evaluate()).resolves.toBeUndefined();
-    });
+    test.each([[true], [1], ["string"], [Symbol()]])(
+      "should not throw for resolved promise to %p",
+      async (value) => {
+        const assertion = pass(Promise.resolve(value));
+        await expect(assertion.evaluate()).resolves.toBeUndefined();
+      },
+    );
 
-    test.each([
-      [false],
-      [0],
-      [""],
-      [null],
-    ])("should throw for resolved promise to %p", async (value) => {
-      const assertion = pass(Promise.resolve(value));
-      await expect(assertion.evaluate()).rejects.toThrow();
-    });
+    test.each([[false], [0], [""], [null]])(
+      "should throw for resolved promise to %p",
+      async (value) => {
+        const assertion = pass(Promise.resolve(value));
+        await expect(assertion.evaluate()).rejects.toThrow();
+      },
+    );
 
-    test.each([
-      [true],
-      [1],
-      ["string"],
-      [Symbol()],
-    ])("should not throw for function returning %p", (value) => {
-      const assertion = pass(() => value);
-      expect(() => assertion.evaluate()).not.toThrow();
-      expect(assertion.evaluate()).toBeUndefined();
-    });
+    test.each([[true], [1], ["string"], [Symbol()]])(
+      "should not throw for function returning %p",
+      (value) => {
+        const assertion = pass(() => value);
+        expect(() => assertion.evaluate()).not.toThrow();
+        expect(assertion.evaluate()).toBeUndefined();
+      },
+    );
 
-    test.each([
-      [false],
-      [0],
-      [""],
-      [null],
-    ])("should throw for function returning %p", (value) => {
-      const assertion = pass(() => value);
-      expect(() => assertion.evaluate()).toThrow();
-    });
+    test.each([[false], [0], [""], [null]])(
+      "should throw for function returning %p",
+      (value) => {
+        const assertion = pass(() => value);
+        expect(() => assertion.evaluate()).toThrow();
+      },
+    );
 
     test("should not throw for function not returning anything", () => {
-      const assertion = pass(() => {
-      });
+      const assertion = pass(() => {});
       expect(() => assertion.evaluate()).not.toThrow();
       expect(assertion.evaluate()).toBeUndefined();
     });
 
     test("should throw for function throwing", () => {
       const assertion = pass(() => {
-        throw new Error("function error")
+        throw new Error("function error");
       });
-      expect(() => assertion.evaluate()).toThrowError("AssertionError (PASS): Expected expression to pass.\nResults:\n  - Error: function error\nExpression: (function)\n");
+      expect(() => assertion.evaluate()).toThrow(
+        "AssertionError (PASS): Expected expression to pass.\nResults:\n  - Error: function error\nExpression: (function)\n",
+      );
     });
 
-    test.each([
-      [true],
-      [1],
-      ["string"],
-      [Symbol()],
-    ])("should not throw for async function returning %p", async (value) => {
-      const assertion = pass(async () => value);
-      await expect(assertion.evaluate()).resolves.toBeUndefined();
-    });
+    test.each([[true], [1], ["string"], [Symbol()]])(
+      "should not throw for async function returning %p",
+      async (value) => {
+        const assertion = pass(async () => value);
+        await expect(assertion.evaluate()).resolves.toBeUndefined();
+      },
+    );
 
-    test.each([
-      [false],
-      [0],
-      [""],
-      [null],
-    ])("should throw for async function returning %p", async (value) => {
-      const assertion = pass(async () => value);
-      await expect(assertion.evaluate()).rejects.toThrow();
-    });
+    test.each([[false], [0], [""], [null]])(
+      "should throw for async function returning %p",
+      async (value) => {
+        const assertion = pass(async () => value);
+        await expect(assertion.evaluate()).rejects.toThrow();
+      },
+    );
 
     test("should not throw for async function not returning anything", async () => {
-      const assertion = pass(async () => {
-      });
+      const assertion = pass(async () => {});
       await expect(assertion.evaluate()).resolves.toBeUndefined();
     });
   });
@@ -150,9 +131,11 @@ describe("pass", () => {
     });
 
     test("should return function code", () => {
-      expect(valueToString(function () {
-        return "this is a long function";
-      })).toBe("(function)");
+      expect(
+        valueToString(function () {
+          return "this is a long function";
+        }),
+      ).toBe("(function)");
     });
 
     test("should return function code", () => {

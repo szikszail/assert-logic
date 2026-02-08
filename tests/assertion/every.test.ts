@@ -1,10 +1,10 @@
-import {every} from '../../src';
-import {EVERYAssertion} from "../../src/assertion/every";
-import {ANDAssertion} from "../../src/assertion/and";
+import { every } from "../../src";
+import { EVERYAssertion } from "../../src/assertion/every";
+import { ANDAssertion } from "../../src/assertion/and";
 
 describe("every", () => {
   test("should throw for missing value", () => {
-    // @ts-ignore
+    // @ts-expect-error Invalid arguments
     expect(() => every()).toThrow();
   });
 
@@ -23,7 +23,10 @@ describe("every", () => {
   });
 
   test("should use custom function", () => {
-    const values = [{a: true, b: true}, {a: true, b: false}];
+    const values = [
+      { a: true, b: true },
+      { a: true, b: false },
+    ];
     expect(() => every(values, (value) => value.a).evaluate()).not.toThrow();
     expect(() => every(values, (value) => value.b).evaluate()).toThrow();
   });
